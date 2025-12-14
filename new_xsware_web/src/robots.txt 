@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+Disallow: /portfolio
+Disallow: /contact
+
+Sitemap: https://xsware.pl/sitemap.xml
