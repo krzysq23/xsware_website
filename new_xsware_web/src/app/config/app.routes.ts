@@ -1,11 +1,11 @@
 import { Routes } from '@angular/router';
-import { AuthGuard } from '../services/auth/authguard.service'; 
-import { Home } from '../pages/home/home'; 
-import { Contact } from '../pages/contact/contact';
-import { About } from '../pages/about/about'; 
-import { Login } from '../pages/login/login'; 
-import { Portfolio } from '../pages/portfolio/portfolio'; 
-import { Profile } from '../pages/profile/profile'; 
+import { AuthGuard } from '@services/auth/authguard.service'; 
+import { Home } from '@pages/home/home'; 
+import { Contact } from '@pages/contact/contact';
+import { About } from '@pages/about/about'; 
+import { Login } from '@pages/login/login'; 
+import { Portfolio } from '@pages/portfolio/portfolio'; 
+import { Profile } from '@pages/profile/profile'; 
 
 export const routes: Routes = [
     { path: '', redirectTo: 'home', pathMatch: 'full' },

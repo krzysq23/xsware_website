@@ -2,7 +2,7 @@ import { Injectable, inject } from '@angular/core';
 import { HttpClient, HttpHandlerFn, HttpRequest, HttpEvent, HttpErrorResponse } from '@angular/common/http';
 import { ToastrService } from 'ngx-toastr';
 import { Observable, throwError } from 'rxjs';
-import { environment } from '../../environments/environments';
+import { environment } from '@environments/environments';
 import { catchError } from 'rxjs/operators';
 
 @Injectable({

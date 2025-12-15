@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, throwError } from 'rxjs';
 import { ToastrService } from 'ngx-toastr';
-import { ApiService } from '../api.service';
-import { UserSessionService } from '../session/userSession.service';
+import { ApiService } from '@services/api.service';
+import { UserSessionService } from '@services/session/userSession.service';
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {

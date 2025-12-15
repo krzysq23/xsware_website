@@ -1,7 +1,7 @@
 import { Component, OnInit, Inject, Renderer2, ElementRef, HostListener } from '@angular/core';
 import { Router, NavigationEnd, RouterOutlet } from '@angular/router';
-import { Navbar } from './components/navbar/navbar';
-import { Footer } from './components/footer/footer';
+import { Navbar } from '@components/navbar/navbar';
+import { Footer } from '@components/footer/footer';
 import { AuthService } from './services/auth/auth.service';
 
 import { RouterModule } from "@angular/router";
@@ -11,10 +11,6 @@ import { DOCUMENT } from "@angular/common";
 import { isPlatformBrowser } from '@angular/common';
 import { PLATFORM_ID } from '@angular/core';
 import { filter, Subscription } from 'rxjs';
-
-var  lastScrollTop = 0;
-var  delta = 5;
-var  navbarHeight = 0;
 
 @Component({
   selector: 'app-root',
@@ -30,6 +26,13 @@ var  navbarHeight = 0;
   styleUrl: './app.scss'
 })
 export class AppComponent implements OnInit {
+
+  title = 'XSWare Solution';
+  private routerSub?: Subscription;
+  private lastScrollTop = 0;
+  private delta = 5;
+  private navbarHeight = 0;
+
   constructor(
     private authService: AuthService,
     private renderer: Renderer2,
@@ -45,20 +48,20 @@ export class AppComponent implements OnInit {
       console.log('SSR: No document object available');
     }
   }
-  title = 'XSWare Solution';
-  private routerSub?: Subscription;
 
   @HostListener('window:scroll')
   hasScrolled() {
 
+    if (!isPlatformBrowser(this.platformId)) return;
+
       var st = window.pageYOffset;
-      if(Math.abs(lastScrollTop - st) <= delta)
+      if(Math.abs(this.lastScrollTop - st) <= this.delta)
           return;
 
       var navbar = document.getElementsByTagName('nav')[0];
       const number = window.scrollY;
 
-      if (st > lastScrollTop && st > navbarHeight){
+      if (st > this.lastScrollTop && st > this.navbarHeight){
           if (navbar.classList.contains('headroom--pinned')) {
               navbar.classList.remove('headroom--pinned');
               navbar.classList.add('headroom--unpinned');
@@ -77,10 +80,11 @@ export class AppComponent implements OnInit {
           navbar.classList.remove('headroom--not-top');
       }
 
-      lastScrollTop = st;
+      this.lastScrollTop = st;
   };
 
   ngOnInit() {
+    if (!isPlatformBrowser(this.platformId)) return;
     var navbar : HTMLElement = this.element.nativeElement.children[0].children[0];2
     this.routerSub = this.router.events.pipe(filter(event => event instanceof NavigationEnd)).subscribe((event: NavigationEnd) => {
         if (window.outerWidth > 991) {
