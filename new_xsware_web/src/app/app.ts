@@ -3,13 +3,12 @@ import { Router, NavigationEnd, RouterOutlet } from '@angular/router';
 import { Navbar } from '@components/navbar/navbar';
 import { Footer } from '@components/footer/footer';
 import { AuthService } from './services/auth/auth.service';
+import { PlatformService } from '@core/platform';
 
 import { RouterModule } from "@angular/router";
 import { CommonModule } from '@angular/common';
 import { Location } from "@angular/common";
 import { DOCUMENT } from "@angular/common";
-import { isPlatformBrowser } from '@angular/common';
-import { PLATFORM_ID } from '@angular/core';
 import { filter, Subscription } from 'rxjs';
 
 @Component({
@@ -39,11 +38,11 @@ export class AppComponent implements OnInit {
     private router: Router,
     public location: Location,
     private element : ElementRef,
-    @Inject(DOCUMENT) private document: Document,
-    @Inject(PLATFORM_ID) private platformId: any
+    private platform: PlatformService,
+    @Inject(DOCUMENT) private document: Document
   ) {
-    if (isPlatformBrowser(this.platformId)) {
-      console.log(this.document.title);
+    if (!this.platform.isBrowser) {
+      console.log("Browser title: " + this.document.title);
     } else {
       console.log('SSR: No document object available');
     }
@@ -52,7 +51,7 @@ export class AppComponent implements OnInit {
   @HostListener('window:scroll')
   hasScrolled() {
 
-    if (!isPlatformBrowser(this.platformId)) return;
+    if (!this.platform.isBrowser) return;
 
       var st = window.pageYOffset;
       if(Math.abs(this.lastScrollTop - st) <= this.delta)
@@ -84,7 +83,8 @@ export class AppComponent implements OnInit {
   };
 
   ngOnInit() {
-    if (!isPlatformBrowser(this.platformId)) return;
+    if (!this.platform.isBrowser) return;
+
     var navbar : HTMLElement = this.element.nativeElement.children[0].children[0];2
     this.routerSub = this.router.events.pipe(filter(event => event instanceof NavigationEnd)).subscribe((event: NavigationEnd) => {
         if (window.outerWidth > 991) {
@@ -98,9 +98,6 @@ export class AppComponent implements OnInit {
     this.hasScrolled();
 
     /* Check authentication only in the browser */
-    if (!isPlatformBrowser(this.platformId)) {
-      return;
-    }
     this.authService.checkAuth();
   }
 }

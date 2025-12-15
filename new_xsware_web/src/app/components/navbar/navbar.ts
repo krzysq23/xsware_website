@@ -23,7 +23,13 @@ export class Navbar implements OnInit {
     public title = 'XSWare Solution'; 
     public email = 'XSWare Solution';
 
-    constructor(public location: Location, private router: Router, private authService: AuthService, private userSession: UserSessionService, private platform: PlatformService) {
+    constructor(
+        public location: Location, 
+        private router: Router, 
+        private authService: AuthService, 
+        private userSession: UserSessionService,
+        private platform: PlatformService
+    ) {
         this.authService.isLoggedIn$.subscribe(status => {
             this.isLoggedIn = status;
         });
