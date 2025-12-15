@@ -1,15 +1,15 @@
 import { Component } from '@angular/core';
-import { NgClass } from '@angular/common';
 import { ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { ApiService } from '@services/api.service';
 import { ToastrService } from 'ngx-toastr';
+import { SharedImports } from '@app/shared/imports';
 
 @Component({
   selector: 'app-contact',
   imports: [
-    NgClass,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    SharedImports
   ],
   templateUrl: './contact.html',
   styleUrl: './contact.scss',

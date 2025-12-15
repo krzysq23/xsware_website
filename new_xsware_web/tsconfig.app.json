@@ -11,7 +11,8 @@
       "@core/*": ["src/app/core/*"],
       "@services/*": ["src/app/services/*"],
       "@components/*": ["src/app/components/*"],
-      "@environments/*": ["src/environments/*"]
+      "@environments/*": ["src/environments/*"],
+      "@shared/*": ["src/app/shared/*"]
     },
     "types": [
       "node"

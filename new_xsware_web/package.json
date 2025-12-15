@@ -36,7 +36,6 @@
     "@ng-bootstrap/ng-bootstrap": "^20.0.0",
     "devicon": "^2.17.0",
     "express": "^5.1.0",
-    "ngx-bootstrap": "^6.2.0",
     "ngx-cookie-service": "^21.1.0",
     "ngx-toastr": "^19.1.0",
     "rxjs": "~7.8.0",

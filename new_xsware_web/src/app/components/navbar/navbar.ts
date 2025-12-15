@@ -1,16 +1,15 @@
 import { Component, OnInit } from '@angular/core';
-import { Router, RouterLink, NavigationEnd, NavigationStart } from '@angular/router';
+import { Router, NavigationEnd, NavigationStart } from '@angular/router';
 import { PlatformService } from '@core/platform';
 import { Location, PopStateEvent } from '@angular/common';
-import { NgbCollapseModule } from '@ng-bootstrap/ng-bootstrap';
+import { SharedImports } from '@app/shared/imports';
 import { AuthService } from '@services/auth/auth.service';
 import { UserSessionService } from '@services/session/userSession.service';
 
 @Component({
     selector: 'app-navbar',
     imports: [ 
-      RouterLink,
-      NgbCollapseModule
+      SharedImports
     ],
     templateUrl: './navbar.html',
     styleUrls: ['./navbar.scss']

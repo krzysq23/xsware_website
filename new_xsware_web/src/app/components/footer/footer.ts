@@ -1,12 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { Router, RouterLink } from '@angular/router';
-import { NgClass } from '@angular/common';
+import { Router } from '@angular/router';
+import { SharedImports } from '@app/shared/imports';
 
 @Component({
     selector: 'app-footer',
     imports: [ 
-      RouterLink,
-      NgClass
+      SharedImports
     ],
     templateUrl: './footer.html',
     styleUrls: ['./footer.scss']
