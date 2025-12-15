@@ -1,1 +1,93 @@
-<p>portfolio works!</p>
+<main class="profile-page">
+    <section class="section section-lg section-hero section-shaped">
+      <div class="shape shape-style-1 shape-default">
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    <div class="separator separator-bottom separator-skew">
+      <svg x="0" y="0" viewBox="0 0 2560 100" preserveAspectRatio="none" version="1.1" xmlns="http://www.w3.org/2000/svg">
+        <polygon class="fill-white" points="2560 0 2560 100 0 100"></polygon>
+      </svg>
+    </div>
+  </section>
+  <section class="section">
+    <div class="container">
+      <div class="card card-profile shadow mt--300">
+        <div class="px-4">
+          <div class="row justify-content-center">
+            <div class="col-lg-3 order-lg-2">
+              <div class="card-profile-image">
+                <a href="javascript:void(0)">
+                  <img src="./assets/img/other/profile_photo_square.jpeg" class="rounded-circle" style="z-index: 10;">
+                </a>
+              </div>
+            </div>
+          </div>
+          <div class="text-center name-section">
+            <h3>Krzsztof Skarbowski
+              <span class="font-weight-light">, 33</span>
+            </h3>
+            <div class="h6 font-weight-300"><i class="ni location_pin mr-2"></i>Full-Stack Java Developer</div>
+            <div class="h6 mt-4">
+              <div class="row row-grid mt-5">
+                <div class="col-lg-4">
+                  <div class="icon icon-info icon-shape bg-gradient-white shadow rounded-circle text-primary">
+                    <i class="ni ni-pin-3 text-primary"></i>
+                  </div>
+                  <p class="mt-3">Warszawa, Woj. Mazowieckie, Polska</p>
+                </div>
+                <div class="col-lg-4">
+                  <div class="icon icon-info icon-shape bg-gradient-white shadow rounded-circle text-primary">
+                    <i class="ni ni-email-83 text-primary"></i>
+                  </div>
+                  <p class="mt-3"><a href="mailto:krzysztof.skarbowski@gmail.com">krzysztof.skarbowski@gmail.com</a></p>
+                </div>
+                <div class="col-lg-4">
+                  <div class="icon icon-info icon-shape bg-gradient-white shadow rounded-circle text-primary">
+                    <i class="ni ni-mobile-button text-primary"></i>
+                  </div>
+                  <p class="mt-3">+48 796 472 525</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="mt-5 py-5 border-top text-center">
+            <div class="col-lg-12">
+              <div class="custom-tab-content flex-column flex-md-row">
+                <ul ngbNav #nav="ngbNav" [(activeId)]="active" class="nav nav-pills justify-content-center" type="pills">
+                  <li class="nav-item" [ngbNavItem]="1">
+                    <a class="nav-link" ngbNavLink>
+                      <i class="ni ni-badge  mr-2"></i> Moje CV</a>
+                    <ng-template ngbNavContent>
+                      <div>
+                        <cv-tabs-section></cv-tabs-section>
+                      </div>
+                    </ng-template>
+                  </li>
+                  <li class="nav-item" [ngbNavItem]="2">
+                    <a class="nav-link" ngbNavLink>
+                      <i class="ni ni-app mr-2"></i> Projekty
+                    </a>
+                    <ng-template ngbNavContent>
+                      <div>
+                        <projects-tabs-section></projects-tabs-section>
+                      </div>
+                    </ng-template>
+                  </li>
+                </ul>
+              </div>
+              <div [ngbNavOutlet]="nav" class="custom-tab-content"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>

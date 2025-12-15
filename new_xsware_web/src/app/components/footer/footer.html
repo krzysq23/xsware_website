@@ -1,6 +1,6 @@
 <footer class="footer" [ngClass]="{'has-cards': getPath()!=='/user-profile' && getPath()!=='/register' && getPath()!=='/login'}">
   <div class="container">
-    @if (!isLoggedIn) {
+    @if (!isLoggedIn && getPath()!=='/portfolio') {
       <div class="row row-grid align-items-center" [ngClass]="{'my-md': getPath()!=='/user-profile' && getPath()!=='/register' && getPath()!=='/login', 'mb-5':getPath()==='/user-profile' || getPath()==='/register' || getPath()==='/login'}">
         <div class="col-lg-6">
           <h3 class="text-primary font-weight-light mb-2">Dziękujemy za zaufanie.</h3>

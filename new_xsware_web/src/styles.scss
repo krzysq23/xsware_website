@@ -1,4 +1,47 @@
 /* =========================
+   Project Tab
+========================= */
+
+.tab-pane {
+  padding: 10px 20px;
+
+  section {
+    padding-bottom: 40px;
+  }
+
+  hr {
+    width: 100%;
+  }
+
+  .icon {
+    padding-right: 10px;
+
+    i {
+      font-size: 1.2rem;
+    }
+  }
+
+  .card-body {
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 4px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
+  }
+}
+
+.user-info-photo {
+  margin: 25px 0;
+
+  .row {
+    gap: 15px;
+    align-items: center;
+  }
+
+  img {
+    width: 100px;
+  }
+}
+
+/* =========================
    Timeline styles
 ========================= */
 
@@ -12,7 +55,7 @@
     top: 0;
     bottom: 0;
     width: 2px;
-    background: rgba(255, 255, 255, 0.15);
+    background: rgba(94, 114, 228, 0.4117647059);
   }
 }
 
@@ -31,11 +74,29 @@
   position: relative;
   margin-left: 56px;
   margin-bottom: 1.25rem;
+
+  .mb-1 {
+    font-size: 1rem;
+    font-weight: bold;
+  }
 }
 
 .tl-card {
   background: #151a2c;
   border: 1px solid rgba(255, 255, 255, 0.08);
+
+  li, .text-muted{
+    font-size: 0.9rem;
+    text-align: left;
+    margin-bottom: 6px;
+  }
+
+  .mb-1 {
+    font-size: 1rem;
+    font-weight: bold;
+    text-align: left;
+  }
+
 }
 
 .tl-time {
