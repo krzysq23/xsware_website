@@ -1,12 +1,12 @@
 import { NgClass } from '@angular/common';
 import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
-
 import {
   NgbCollapse,
   NgbDropdown,
   NgbDropdownToggle,
   NgbDropdownMenu,
-  NgbDropdownItem
+  NgbDropdownItem,
+  NgbTooltip
 } from '@ng-bootstrap/ng-bootstrap';
 
 export const SharedImports = [
@@ -24,4 +24,6 @@ export const SharedImports = [
   NgbDropdownToggle,
   NgbDropdownMenu,
   NgbDropdownItem,
+  NgbTooltip,
+  
 ] as const;
