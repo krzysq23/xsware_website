@@ -1,1 +1,249 @@
-/* You can add global styles to this file, and also import other style files */
+/* =========================
+   Timeline styles
+========================= */
+
+.timeline {
+  position: relative;
+
+  &::before {
+    content: "";
+    position: absolute;
+    left: 24px;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: rgba(255, 255, 255, 0.15);
+  }
+}
+
+.tl-dot {
+  position: absolute;
+  left: 15px;
+  top: 1rem;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #6aa6ff, #8b5cf6);
+  box-shadow: 0 0 0 4px rgba(138, 92, 246, 0.15);
+}
+
+.tl-item {
+  position: relative;
+  margin-left: 56px;
+  margin-bottom: 1.25rem;
+}
+
+.tl-card {
+  background: #151a2c;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.tl-time {
+  font-size: 0.85rem;
+  color: #aab2c8;
+}
+
+/* Timeline alternate layout */
+@media (min-width: 768px) {
+  .timeline-alt {
+    &::before {
+      left: 50%;
+    }
+
+    .tl-item {
+      width: 50%;
+      margin-left: 0;
+
+      &.left {
+        padding-right: 2rem;
+
+        .tl-dot {
+          right: -9px;
+          left: auto;
+        }
+      }
+
+      &.right {
+        margin-left: 50%;
+        padding-left: 2rem;
+
+        .tl-dot {
+          left: -9px;
+        }
+      }
+
+      .tl-dot {
+        left: auto;
+      }
+    }
+  }
+}
+
+/* =========================
+   Tech section styles
+========================= */
+
+.tech-section {
+  border-radius: 16px;
+  padding: 30px;
+  margin: 40px auto;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.tech-title {
+  font-weight: 700;
+  font-size: 1.4rem;
+  margin-bottom: 25px;
+  text-align: center;
+}
+
+.tech-row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.tech-col {
+  flex: 0 0 auto;
+  margin: 8px 14px;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 14px 18px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: transform 0.2s ease, background 0.3s ease;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
+
+  &:hover {
+    transform: translateY(-3px);
+    background: #f2f2f2;
+    cursor: pointer;
+  }
+
+  i {
+    font-size: 36px;
+    margin-bottom: 8px;
+  }
+
+  span {
+    font-size: 14px;
+  }
+}
+
+.section-heading {
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: #32325d;
+  margin: 40px 0 15px;
+  text-align: center;
+  letter-spacing: 0.5px;
+}
+
+/* =========================
+   Project Tab
+========================= */
+
+.subtitle {
+  margin: 0 0 14px;
+  color: var(--text-muted);
+  font-size: 1rem;
+}
+
+.section-title {
+  margin: 28px 0 10px;
+  font-size: 1.05rem;
+  font-weight: 600;
+}
+
+.pill-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.pill {
+  font-size: 0.8rem;
+  padding: 6px 10px;
+  border-radius: 999px;
+  background: rgba(15, 23, 42, 0.9);
+  border: 1px solid rgba(148, 163, 184, 0.65);
+  color: var(--text-main);
+  white-space: nowrap;
+}
+
+.links {
+  margin-top: 14px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  font-size: 0.88rem;
+}
+
+.link-chip {
+  display: inline-flex !important;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 10px;
+  border-radius: 999px;
+  border: 1px solid rgba(148, 163, 184, 0.6);
+  background: rgba(15, 23, 42, 0.85);
+
+  svg {
+    width: 14px;
+    height: 14px;
+  }
+}
+
+.stack-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+  gap: 14px;
+  margin-top: 10px;
+}
+
+.stack-card {
+  background: rgba(15, 23, 42, 0.9);
+  border-radius: 14px;
+  border: 1px solid rgba(148, 163, 184, 0.5);
+  padding: 10px 12px 12px;
+  font-size: 0.85rem;
+
+  strong {
+    display: block;
+    margin-bottom: 4px;
+    font-size: 0.86rem;
+  }
+
+  ul {
+    margin: 0;
+    padding-left: 18px;
+    color: var(--text-muted);
+  }
+}
+
+.flow-step {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 6px;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+
+  span.idx {
+    width: 18px;
+    height: 18px;
+    border-radius: 999px;
+    background: linear-gradient(135deg, var(--accent), var(--accent-2));
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    flex-shrink: 0;
+  }
+}

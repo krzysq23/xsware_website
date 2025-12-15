@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, RouterLink, NavigationEnd, NavigationStart } from '@angular/router';
-import { Location, PopStateEvent, NgClass } from '@angular/common';
+import { Location, PopStateEvent } from '@angular/common';
 import { NgbCollapseModule } from '@ng-bootstrap/ng-bootstrap';
+import { AuthService } from '../../services/auth/auth.service';
+import { UserSessionService } from '../../services/session/userSession.service';
 
 @Component({
     selector: 'app-navbar',
@@ -16,8 +18,15 @@ export class Navbar implements OnInit {
     public isCollapsed = true;
     private lastPoppedUrl?: string;
     private yScrollStack: number[] = [];
+    public isLoggedIn = false;
+    public title = 'XSWare Solution'; 
+    public email = 'XSWare Solution';
 
-    constructor(public location: Location, private router: Router) {
+    constructor(public location: Location, private router: Router, private authService: AuthService, private userSession: UserSessionService) {
+        this.authService.isLoggedIn$.subscribe(status => {
+            this.isLoggedIn = status;
+        });
+        this.email = userSession.email();
     }
 
     ngOnInit() {
@@ -57,5 +66,9 @@ export class Navbar implements OnInit {
         else {
             return false;
         }
+    }
+
+    logoutClick(): void {
+        this.authService.logout();
     }
 }

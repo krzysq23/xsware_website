@@ -41,6 +41,9 @@ export class AppComponent {
   title = 'XSWare Solution';
   
   ngOnInit() {
+    if (!isPlatformBrowser(this.platformId)) {
+      return;
+    }
     this.authService.checkAuth();
   }
 }

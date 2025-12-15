@@ -32,7 +32,9 @@
             ],
             "styles": [
               "src/styles.scss",
-              "src/assets/scss/argon.scss"
+              "src/assets/scss/argon.scss",
+              "node_modules/ngx-toastr/toastr.css",
+              "node_modules/devicon/devicon.min.css"
             ],
             "server": "src/main.server.ts",
             "outputMode": "server",
