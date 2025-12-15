@@ -1,1 +1,251 @@
-<p>projects works!</p>
+<section id="comerce_project">
+  <h3 class="h4 font-weight-bold mt-md">Projekty komercyjne</h3>
+  <hr class="line-success" />
+  <div class="cards">
+    <p>
+      Poniżej przedstawiam moje wybrane projekty, które zaprojektowałem i rozwijam – od
+        frontendu (Angular/React) po backend w Javie i Kotlinie, uruchomione w kontenerach
+        Docker na serwerze VPS (Linux).
+    </p>
+  </div>
+</section>
+
+<div class="projects-grid">
+  <!-- PROJEKT 1: Strona firmy -->
+  <section id="project_1">
+    <h3 class="h4 font-weight-bold mt-md">Strona firmowa XsWare Solution</h3>
+    <hr class="line-success" />
+    <div class="cards">
+      <p class="subtitle">
+        Aplikacja webowa została zbudowana w Angularze, aby prezentować zakres usług i realizacji firmy XsWare Solution. 
+        Projekt został zaprojektowany z naciskiem na przejrzyste UI oraz pełną responsywność, również na urządzeniach mobilnych. 
+      </p>
+
+      <ngb-carousel>
+        @for (img of carousel1; track img.src) {
+          <ng-template ngbSlide>
+            <img
+              [src]="img.src"
+              class="d-block w-100"
+              [alt]="img.title"
+            />
+            <!-- <div class="carousel-caption d-none d-md-block">
+              <h5>{{ img.title }}</h5>
+              <p>{{ img.desc }}</p>
+            </div> -->
+          </ng-template>
+        }
+      </ngb-carousel>
+
+      <div class="section-title">
+        <span>Link do strony</span>
+        <hr class="line-success" />
+          <div>
+            <a class="btn btn-success btn-simple btn-round link-chip" href="https://xsware.pl" target="_blank" rel="noreferrer">
+              <img src="assets/img/brand/xsware_icon_white.png" alt="xsware.pl" style="height:20px;padding-right: 5px;">
+              <span>Strona: xsware.pl</span>
+            </a>
+        </div>
+      </div>
+ 
+      <div class="section-title">
+        <span>Github</span>
+        <hr class="line-success" />
+          <div>
+            <a class="btn btn-success btn-simple btn-round link-chip" href="https://github.com/krzysq23/XSWareWeb" target="_blank" rel="noreferrer">
+              <i class="devicon-github-original"></i>
+              <span>XSWareWeb</span>
+            </a>
+        </div>
+      </div>
+ 
+
+      <div class="section-title">
+        <span>Zakres i funkcjonalności</span>
+        <hr class="line-success" />
+        <ul>
+          <li><p>Prezentacja firmy, usług i kompetencji technicznych.</p></li>
+          <li><p>Responsywny layout oparty o Angular i Bootstrap'a.</p></li>
+        </ul>
+      </div>
+
+
+      <div class="section-title">
+        <span>Wykorzystane technologie</span>
+        <hr class="line-success" />
+      </div>
+      <div class="tech-row">
+        <div class="tech-col"><i class="devicon-angular-plain colored"></i><span>Angular</span></div>
+        <div class="tech-col"><i class="devicon-typescript-plain colored"></i><span>TypeScript</span></div>
+        <div class="tech-col"><i class="devicon-javascript-plain colored"></i><span>JavaScript</span></div>
+        <div class="tech-col"><i class="devicon-html5-plain colored"></i><span>HTML5</span></div>
+        <div class="tech-col"><i class="devicon-css3-plain colored"></i><span>CSS3</span></div>
+        <div class="tech-col"><i class="devicon-bootstrap-plain colored"></i><span>Bootstrap</span></div>
+        <div class="tech-col"><i class="devicon-docker-plain colored"></i><span>Docker</span></div>
+        <div class="tech-col"><i class="devicon-linux-plain colored"></i><span>Linux</span></div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- PROJEKT 2: Saldo Planer -->
+  <section id="project_2">
+    <h3 class="h4 font-weight-bold mt-md">Aplikacja Saldo Planer</h3>
+    <hr class="line-success" />
+    <div class="cards">
+      <p class="subtitle">
+        Aplikacja webowa "Saldo Planer" została stworzona do planowania i analizy salda finansowego. 
+        Frontend został napisany w React i komunikuje się z warstwą REST API w Spring (Java), która z kolei korzysta z
+        serwisu w Kotlinie do pracy z bazą MySQL.
+      </p>
+      
+      <ngb-carousel>
+        @for (img of carousel2; track img.src) {
+          <ng-template ngbSlide>
+            <img
+              [src]="img.src"
+              class="d-block w-100"
+              [alt]="img.title"
+            />
+          </ng-template>
+        }
+      </ngb-carousel>
+
+      <div class="section-title">
+        <span>Architektura rozwiązania</span>
+        <hr class="line-success" />
+        <ol>
+          <li>
+            <strong>Saldo Planer (React)</strong> – aplikacja SPA dostępna pod adresem <a href="https://app.xsware.pl" target="_blank" rel="noreferrer">app.xsware.pl</a>.
+          </li>
+          <li>
+            <span>
+              Frontend komunikuje się z <strong>XsWareApi</strong> –
+              REST API napisanym w Spring/Java:
+              <a href="https://api.xsware.pl/swagger-ui/index.html#/" target="_blank" rel="noreferrer">Swagger XsWareApi</a>.
+            </span>
+          </li>
+          <li>
+            <span>
+              <strong>XsWareApi</strong> wywołuje serwis <strong>XsWareDbService</strong>
+              napisany w Kotlinie, który odpowiada za komunikację z bazą danych MySQL:
+              <a href="http://connector.xsware.pl/swagger-ui/index.html#/" target="_blank" rel="noreferrer">Swagger XsWareDbService</a>.
+            </span>
+          </li>
+          <li>
+            <span>
+              Całość działa na serwerze VPS (Linux), w kontenerach Docker, co ułatwia deploy,
+              skalowanie i izolację środowisk.
+            </span>            
+          </li>
+        </ol>
+      </div>
+
+      <div class="text-center">
+        <img src="assets/img/other/apps_architecture_2.png" class="rounded" alt="...">
+      </div>
+  
+      <div class="section-title">
+        <span>Link do aplikacji</span>
+        <hr class="line-success" />
+        <div class="links">
+          <a class="btn btn-success btn-simple btn-round link-chip" href="https://app.xsware.pl" target="_blank" rel="noreferrer">
+            <img src="assets/img/brand/xsware_icon_white.png" alt="xsware.pl" style="height:20px;padding-right: 5px;">
+            <span>Strona: app.xsware.pl</span>
+          </a>
+          <div class="credencial-info"><span>login: <strong>test</strong>, password: <strong>test1234</strong></span></div>
+        </div>
+        <div class="links">
+          <a class="btn btn-success btn-simple btn-round link-chip" href="https://api.xsware.pl/swagger-ui/index.html#/" target="_blank" rel="noreferrer">
+            <img src="assets/img/brand/xsware_icon_white.png" alt="xsware.pl" style="height:20px;padding-right: 5px;">
+            <span>XsWareApi · Swagger</span>
+          </a>
+          <div class="credencial-info"><span>login: <strong>swagger</strong>, password: <strong>swagger</strong></span></div>
+        </div>
+        <div class="links">
+          <a class="btn btn-success btn-simple btn-round link-chip" href="http://connector.xsware.pl/swagger-ui/index.html#/" target="_blank" rel="noreferrer">
+            <img src="assets/img/brand/xsware_icon_white.png" alt="xsware.pl" style="height:20px;padding-right: 5px;">
+            <span>XsWareDbService · Swagger</span>
+          </a>
+          <div class="credencial-info"><span>login: <strong>xsware</strong>, password: <strong>xsware1234</strong></span></div>
+        </div>
+      </div>
+
+      
+      <div class="section-title">
+        <span>Github</span>
+        <hr class="line-success" />
+        <div class="links">
+          <a class="btn btn-success btn-simple btn-round link-chip" href="https://github.com/krzysq23/XSWareWeb" target="_blank" rel="noreferrer">
+            <i class="devicon-github-original"></i>
+            <span>XSWareWeb</span>
+          </a>
+          <a class="btn btn-success btn-simple btn-round link-chip" href="https://github.com/krzysq23/XSWareAPI" target="_blank" rel="noreferrer">
+            <i class="devicon-github-original"></i>
+            <span>XsWareApi</span>
+          </a>
+          <a class="btn btn-success btn-simple btn-round link-chip" href="https://github.com/krzysq23/XSWareDBService" target="_blank" rel="noreferrer">
+            <i class="devicon-github-original"></i>
+            <span>XsWareDbService</span>
+          </a>
+        </div>
+      </div>
+
+      <div class="section-title">
+        <span>Stos technologiczny</span>
+        <hr class="line-success" />
+      </div>
+
+      <div class="flow-step">
+        <span>Frontend (www)</span>
+      </div>
+      <div class="tech-row">
+        <div class="tech-col"><i class="devicon-react-original colored"></i><span>React</span></div>
+        <div class="tech-col"><i class="devicon-html5-plain colored"></i><span>HTML5</span></div>
+        <div class="tech-col"><i class="devicon-css3-plain colored"></i><span>CSS3</span></div>
+        <div class="tech-col"><i class="devicon-typescript-plain colored"></i><span>TypeScript</span></div>
+        <div class="tech-col"><i class="devicon-javascript-plain colored"></i><span>JavaScript</span></div>
+        <div class="tech-col"><i class="devicon-bootstrap-plain colored"></i><span>Bootstrap</span></div>
+        <div class="tech-col"><i class="devicon-materialui-plain colored"></i><span>Material UI</span></div>
+        <div class="tech-col"><i class="devicon-axios-plain colored"></i><span>Axios</span></div>
+      </div>
+
+      <div class="flow-step">
+        <span>Warstwa API (XsWareApi)</span>
+      </div>
+      <div class="tech-row">
+          <div class="tech-col"><i class="devicon-java-plain colored"></i><span>Java</span></div>
+          <div class="tech-col"><i class="devicon-spring-plain colored"></i><span>Spring</span></div>
+          <div class="tech-col"><i class="devicon-maven-plain colored"></i><span>Maven</span></div>
+          <div class="tech-col"><i class="devicon-gradle-original"></i><span>Gradle</span></div>
+          <div class="tech-col"><i class="devicon-junit-plain colored"></i><span>JUnit</span></div>
+          <div class="tech-col"><i class="devicon-json-plain"></i><span>JSON</span></div>
+      </div>
+
+      <div class="flow-step">
+        <span>Warstwa API (XsWareDbService)</span>
+      </div>
+      <div class="tech-row">
+        <div class="tech-col"><i class="devicon-kotlin-plain colored"></i><span>Kotlin</span></div>
+        <div class="tech-col"><i class="devicon-spring-plain colored"></i><span>Spring</span></div>
+        <div class="tech-col"><i class="devicon-gradle-original"></i><span>Gradle</span></div>
+        <div class="tech-col"><i class="devicon-hibernate-plain"></i><span>Hibernate</span></div>
+        <div class="tech-col"><i class="devicon-mysql-plain colored"></i><span>MySQL</span></div>
+        <div class="tech-col"><i class="devicon-junit-plain colored"></i><span>JUnit</span></div>
+        <div class="tech-col"><i class="devicon-json-plain"></i><span>JSON</span></div>
+      </div>
+
+      <div class="flow-step">
+        <span>Infrastruktura (VPS)</span>
+      </div>
+      <div class="tech-row">
+        <div class="tech-col"><i class="devicon-linux-plain colored"></i><span>Linux</span></div>
+        <div class="tech-col"><i class="devicon-docker-plain colored"></i><span>Docker</span></div>
+        <div class="tech-col"><i class="devicon-nginx-original"></i><span>Nginx</span></div>
+        <div class="tech-col"><i class="devicon-jenkins-plain"></i><span>Jenkins</span></div>
+      </div>
+
+    </div>
+  </section>
+
+</div>

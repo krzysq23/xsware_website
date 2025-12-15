@@ -11,7 +11,9 @@ import {
   NgbNavItem,
   NgbNavLink,
   NgbNavContent,
-  NgbNavOutlet
+  NgbNavOutlet,
+  NgbCarousel,
+  NgbSlide
 } from '@ng-bootstrap/ng-bootstrap';
 
 export const SharedImports = [
@@ -34,6 +36,8 @@ export const SharedImports = [
   NgbNavItem,
   NgbNavLink,
   NgbNavContent,
-  NgbNavOutlet
+  NgbNavOutlet,
+  NgbCarousel,
+  NgbSlide
   
 ] as const;

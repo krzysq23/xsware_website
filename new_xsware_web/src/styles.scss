@@ -26,6 +26,9 @@
     border-radius: 4px;
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
   }
+  .credencial-info {
+    padding: 1.5rem;
+  }
 }
 
 .user-info-photo {
@@ -55,7 +58,7 @@
     top: 0;
     bottom: 0;
     width: 2px;
-    background: rgba(94, 114, 228, 0.4117647059);
+    background: rgb(143 145 160 / 44%)
   }
 }
 
@@ -215,9 +218,33 @@
 }
 
 .section-title {
-  margin: 28px 0 10px;
+  margin: 50px 0 10px;
   font-size: 1.05rem;
   font-weight: 600;
+
+  hr {
+    margin-top: 1.2rem;
+    margin-bottom: 1.2rem;
+  }
+
+  ul{
+    margin: 0 auto;
+    width: auto;
+    display: inline-block;
+  }
+
+  ol {
+    margin: 0 0 14px;
+    font-size: 1rem;
+    font-weight: 300;
+    text-align: center;
+    list-style-position: inside;
+    line-height: 2.3rem;
+
+    li::marker {
+      margin-right: 12px;
+    }
+  }
 }
 
 .pill-row {
@@ -238,7 +265,6 @@
 
 .links {
   margin-top: 14px;
-  display: flex;
   flex-wrap: wrap;
   gap: 8px;
   font-size: 0.88rem;
@@ -290,7 +316,7 @@
   display: flex;
   align-items: center;
   gap: 8px;
-  margin-bottom: 6px;
+  margin-bottom: 10px;
 
   &:last-child {
     margin-bottom: 0;

@@ -14,5 +14,5 @@ import { Projects } from '@pages/portfolio/tabs/projects/projects';
   styleUrl: './portfolio.scss',
 })
 export class Portfolio {
-  active = 1;
+  active = 2;
 }
