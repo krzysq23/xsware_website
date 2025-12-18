@@ -1,59 +1,132 @@
-# NewXswareWeb
+# XSWareWeb
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 21.0.3.
+**XSWareSite** is the official **company website of xsware solution**  
+👉 https://xsware.pl
 
-## Development server
+The application is built with **Angular** and serves as a public-facing corporate website,
+providing information about the company, its services and products.  
+It also includes a **login mechanism integrated with XSWareAPI**, allowing authenticated
+access to selected features of the XSWare ecosystem.
 
-To start a local development server, run:
 
+## 🏗️ Architecture Overview
+
+![apps_architecture](https://xsware.pl/assets/img/other/apps_architecture_2.png)
+
+
+## ✨ Key Features
+
+- Corporate website for **xsware solution**
+- Built with **Angular** and **Server-Side Rendering (SSR)**
+- Secure authentication using **XSWareAPI**
+- Responsive design based on **Bootstrap**
+- Modern UI components with **@ng-bootstrap**
+- Cookie-based token handling
+- User-friendly notifications and alerts
+- SEO-friendly architecture thanks to SSR
+
+
+## 🛠️ Technology Stack
+
+### Core
+- **Angular**
+- **TypeScript**
+- **HTML5 / CSS3**
+
+### UI & Styling
+- **Bootstrap** – Responsive layout and styling
+- **@ng-bootstrap** – Angular-native Bootstrap components
+- **Devicon** – Technology and brand icons
+
+### Angular Modules & Libraries
+- **@angular/forms** – Template-driven and reactive forms
+- **@angular/ssr** – Server-Side Rendering for improved SEO and performance
+- **ngx-cookie-service** – Cookie handling (authentication tokens)
+- **ngx-toastr** – Toast notifications and alerts
+
+
+## 🔐 Authentication
+
+- Authentication is handled via **XSWareAPI**
+- Token is stored securely using cookies
+- Authenticated requests are sent to the API using HTTPS
+- Access to restricted sections is guarded by Angular route guards
+
+## ⚙️ Configuration
+
+The application uses **environment configuration files**.
+
+Example `environment.ts`:
+
+```ts
+export const environment = {
+  production: false,
+  apiBaseUrl: 'https://api.xsware.pl'
+};
+
+
+### 🚀 Running the Application
+
+Install dependencies
 ```bash
-ng serve
+npm install
+```
+or
+```bash
+yarn install
 ```
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
-
-## Code scaffolding
-
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
-
+Run in development mode
 ```bash
-ng generate component component-name
+npm start
+```
+or
+```bash
+yarn start
 ```
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
-
+Build for production
 ```bash
-ng generate --help
+npm run build
+```
+or
+```bash
+yarn build
 ```
 
-## Building
 
-To build the project run:
+### Project Structure (simplified)
 
-```bash
-ng build
+```
+src/
+ ├── app
+ │   ├── components
+ │   ├── config
+ │   ├── pages
+ │   ├── services
+ │   └── shared
+ ├── assets
+ └── environments
 ```
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+### 🔄 Data & Authentication Flow
 
-## Running unit tests
+- User visits XSWareSite
+- Public content is rendered (SSR for SEO)
+- User logs in via XSWareAPI
+- Authenticated API requests are sent to XSWareAPI
+- Protected content becomes accessible
 
-To execute unit tests with the [Vitest](https://vitest.dev/) test runner, use the following command:
+### 🧪 Testing
 
+Testing strategy depends on the selected setup (e.g. Jest / React Testing Library).
+
+Example:
 ```bash
-ng test
+npm test
 ```
 
-## Running end-to-end tests
+### 🔗 Related Projects
 
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+- **XSWareAPI** – Backend API (Spring Boot, Java)
+- **XSWareDBService** – Database service (Kotlin, Spring Boot)
