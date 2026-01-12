@@ -8,7 +8,7 @@ import { Portfolio } from '@pages/portfolio/portfolio';
 import { Profile } from '@pages/profile/profile'; 
 
 export const routes: Routes = [
-    { path: '', redirectTo: 'home', pathMatch: 'full' },
+    { path: '', component: Home },
     { path: 'home', component: Home },
     { path: 'contact', component: Contact },
     { path: 'about', component: About },

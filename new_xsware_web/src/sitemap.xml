@@ -8,13 +8,13 @@
   </url>
 
   <url>
-    <loc>https://xsware.pl/home</loc>
+    <loc>https://xsware.pl/about</loc>
     <priority>0.8</priority>
     <changefreq>monthly</changefreq>
   </url>
 
   <url>
-    <loc>https://xsware.pl/about</loc>
+    <loc>https://xsware.pl/contact</loc>
     <priority>0.7</priority>
     <changefreq>monthly</changefreq>
   </url>
