@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { SharedImports } from '@app/shared/imports';
-import { Cv } from '@pages/portfolio/tabs/cv/cv';
-import { Projects } from '@pages/portfolio/tabs/projects/projects';
+import { Cv } from '@features/profile/components/tabs/cv/cv';
+import { Projects } from '@features/profile/components/tabs/projects/projects';
 
 @Component({
   selector: 'app-portfolio',
