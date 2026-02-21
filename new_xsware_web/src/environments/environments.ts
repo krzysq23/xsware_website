@@ -1,8 +1,9 @@
 export const environment = {
     production: false,
-    apiUrl: 'http://localhost:8084',
-    loginEndpoint: "/auth/login",
-    registerEndpoint: "/auth/register",
-    authStatusEndpoint: "/auth/status",
+    apiUrl: 'http://localhost:8081',
+    loginEndpoint: "/api/auth/login",
+    registerEndpoint: "/api/auth/register",
+    refreshEndpoint: "/api/auth/refresh",
+    authStatusEndpoint: "/api/auth/info",
     contactFormEndpoint: "/data/contact"
 };
