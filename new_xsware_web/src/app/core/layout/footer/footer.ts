@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { SharedImports } from '@app/shared/imports';
-import { AuthService } from '@services/auth/auth.service';
+import { AuthService } from '@app/core/auth/auth.service';
 
 @Component({
     selector: 'app-footer',

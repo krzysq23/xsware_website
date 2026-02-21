@@ -1,9 +1,9 @@
 import { Component, OnInit, Inject, Renderer2, ElementRef, HostListener } from '@angular/core';
 import { Router, NavigationEnd, RouterOutlet } from '@angular/router';
-import { Navbar } from '@components/navbar/navbar';
-import { Footer } from '@components/footer/footer';
-import { AuthService } from './services/auth/auth.service';
-import { PlatformService } from '@core/platform';
+import { Navbar } from '@core/layout/navbar/navbar';
+import { Footer } from '@core/layout/footer/footer';
+import { AuthService } from './core/auth/auth.service';
+import { PlatformService } from '@app/core/platform/platform';
 
 import { RouterModule } from "@angular/router";
 import { CommonModule } from '@angular/common';

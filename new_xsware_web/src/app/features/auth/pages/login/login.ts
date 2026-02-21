@@ -4,7 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 import { SharedImports } from '@app/shared/imports';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
-import { AuthService } from '@services/auth/auth.service';
+import { AuthService } from '@app/core/auth/auth.service';
 
 @Component({
   selector: 'app-login',

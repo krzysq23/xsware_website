@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
-import { ApiService } from '@services/api.service';
+import { ApiService } from '@app/core/auth/api.service';
 import { ToastrService } from 'ngx-toastr';
 import { SharedImports } from '@app/shared/imports';
 

@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { SharedImports } from '@app/shared/imports';
-import { UserSessionService } from '@services/session/userSession.service';
+import { UserSessionService } from '@app/core/auth/userSession.service';
 
 @Component({
   selector: 'app-profile',

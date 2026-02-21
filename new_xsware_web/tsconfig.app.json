@@ -7,12 +7,11 @@
     "baseUrl": ".",
     "paths": {
       "@app/*": ["src/app/*"],
-      "@pages/*": ["src/app/pages/*"],
       "@core/*": ["src/app/core/*"],
-      "@services/*": ["src/app/services/*"],
-      "@components/*": ["src/app/components/*"],
+      "@features/*": ["src/app/features/*"],
+      "@shared/*": ["src/app/shared/*"],
       "@environments/*": ["src/environments/*"],
-      "@shared/*": ["src/app/shared/*"]
+      
     },
     "types": [
       "node"

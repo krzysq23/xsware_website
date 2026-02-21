@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, NavigationEnd, NavigationStart } from '@angular/router';
-import { PlatformService } from '@core/platform';
+import { PlatformService } from '@app/core/platform/platform';
 import { Location, PopStateEvent } from '@angular/common';
 import { SharedImports } from '@app/shared/imports';
-import { AuthService } from '@services/auth/auth.service';
-import { UserSessionService } from '@services/session/userSession.service';
+import { AuthService } from '@app/core/auth/auth.service';
+import { UserSessionService } from '@app/core/auth/userSession.service';
 
 @Component({
     selector: 'app-navbar',
