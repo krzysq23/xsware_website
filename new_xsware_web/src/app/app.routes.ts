@@ -17,6 +17,9 @@ export const routes: Routes = [
       import('@app/features/profile/profile.routes').then((m) => m.PROFILE_ROUTES),
   },
 
+  // aliasy:
+  { path: 'login', redirectTo: 'auth/login', pathMatch: 'full' },
+  
   // wildcard
   { path: '**', redirectTo: '', pathMatch: 'full' },
 ];

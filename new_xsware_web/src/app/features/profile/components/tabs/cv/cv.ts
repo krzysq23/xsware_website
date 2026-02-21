@@ -6,6 +6,6 @@ import { Component } from '@angular/core';
   templateUrl: './cv.html',
   styleUrl: './cv.scss',
 })
-export class Cv {
+export class CvComponent {
 
 }

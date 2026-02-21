@@ -1,14 +1,14 @@
 import { Component } from '@angular/core';
 import { SharedImports } from '@app/shared/imports';
-import { Cv } from '@features/profile/components/tabs/cv/cv';
-import { Projects } from '@features/profile/components/tabs/projects/projects';
+import { CvComponent } from '@features/profile/components/tabs/cv/cv';
+import { ProjectsComponent } from '@features/profile/components/tabs/projects/projects';
 
 @Component({
   selector: 'app-portfolio',
   imports: [
     SharedImports,
-    Cv,
-    Projects
+    CvComponent,
+    ProjectsComponent
   ],
   templateUrl: './portfolio.html',
   styleUrl: './portfolio.scss',

@@ -14,24 +14,26 @@
       <div class="row justify-content-center">
         <div class="col-lg-5">
           <div class="card bg-secondary shadow border-0">
-            <div class="card-body px-lg-5 py-lg-5">
+            <div class="card-header bg-white pb-5">
               <div class="text-muted text-center mb-3">
-                <span class="display-4">Zaloguj się</span>
+                <small>Zarejestruj się przez</small>
               </div>
+              <div class="text-center">
+                <a href="javascript:void(0)" class="btn btn-neutral btn-icon">
+                  <span class="btn-inner--icon">
+                    <img src="assets/img/icons/google.svg">
+                  </span>
+                  <span class="btn-inner--text">Google</span>
+                </a>
+              </div>
+            </div>
+            <div class="card-body px-lg-5 py-lg-5">
               <div class="text-center text-muted mb-4">
-              <p>
-                <small>
-                  Klikając Kontynuuj, wyrażasz zgodę na warunki: 
-                  <a href="javascript:void(0)">
-                    Umowę użytkownika, Politykę ochrony prywatności i Zasady korzystania z plików cookie.
-                  </a>
-                </small>
-              </p>
-              <div class="separator-or">
-                <span class="or-text">lub</span>
+                <div class="separator-or">
+                  <span class="or-text">lub</span>
+                </div>
               </div>
-              </div>
-              <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+              <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
                 <div class="form-group mb-3" [ngClass]="{'focused':focus===true}">
                   <div class="input-group input-group-alternative">
                     <div class="input-group-prepend">
@@ -71,28 +73,29 @@
                         />
                   </div>
                 </div>
-                <div class="custom-control custom-control-alternative custom-checkbox">
-                  <input class="custom-control-input" id=" customCheckLogin" type="checkbox">
-                  <label class="custom-control-label" for=" customCheckLogin">
-                    <span>Zapamiętaj mnie</span>
-                  </label>
+                <div class="row my-4">
+                  <div class="col-12">
+                    <div class="custom-control custom-control-alternative custom-checkbox">
+                      <input 
+                        id="checkRegister" 
+                        class="custom-control-input" 
+                        #chkTt="ngbTooltip"
+                        [ngbTooltip]="getPolicyError()"
+                        formControlName="checkRegister"
+                        type="checkbox"
+                      >
+                      <label class="custom-control-label" for="checkRegister">
+                        <span>Zgadzam się z 
+                          <a href="javascript:void(0)">Polityką prywatności</a>
+                        </span>
+                      </label>
+                    </div>
+                  </div>
                 </div>
                 <div class="text-center">
-                  <button type="submit" class="btn btn-primary my-4">Zaloguj się</button>
+                  <button type="submit" class="btn btn-primary my-4">Zarejestruj się</button>
                 </div>
               </form>
-            </div>
-          </div>
-          <div class="row mt-3">
-            <div class="col-6">
-              <a href="javascript:void(0)" class="text-light">
-                <small>Zapomniałeś hasło?</small>
-              </a>
-            </div>
-            <div class="col-6 text-right">
-              <a routerLink="/auth/register" class="text-light">
-                <small>Stwórz nowe konto</small>
-              </a>
             </div>
           </div>
         </div>

@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
 import { SharedImports } from '@app/shared/imports';
@@ -7,20 +7,21 @@ import { ToastrService } from 'ngx-toastr';
 import { AuthService } from '@app/core/auth/auth.service';
 
 @Component({
-  selector: 'app-login',
+  selector: 'app-register',
   imports: [
     CommonModule,
     ReactiveFormsModule,
     SharedImports
   ],
-  templateUrl: './login.html',
-  styleUrl: './login.scss',
+  templateUrl: './register.html',
+  styleUrl: './register.scss',
 })
-export class LoginComponent implements OnInit {
+export class RegisterComponent {
+
   focus: any;
   focus1: any;
   submitted = false;
-  loginForm: FormGroup;
+  registerForm: FormGroup;
   alert = {
     message: '',
     visible: false,
@@ -28,6 +29,7 @@ export class LoginComponent implements OnInit {
 
   @ViewChild('emailTt') emailTt?: any;
   @ViewChild('pwdTt') pwdTt?: any;
+  @ViewChild('chkTt') chkTt?: any;
 
   constructor(
     private fb: FormBuilder, 
@@ -35,23 +37,26 @@ export class LoginComponent implements OnInit {
     private route: ActivatedRoute,
     public toastr: ToastrService
   ) {
-    this.loginForm = this.fb.group({
+    this.registerForm = this.fb.group({
       email: ['', [ 
         Validators.required, 
         Validators.email, 
-        Validators.pattern(/^[a-zA-Z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/)] 
-      ],
-      password: ['', Validators.required],
-      remember: ['']
+        Validators.pattern(/^[a-zA-Z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/) 
+      ]],
+      password: ['', [
+        Validators.required,
+        Validators.minLength(4)
+      ]],
+      checkRegister: [false]
     })
   }
 
   get email() {
-    return this.loginForm.get('email');
+    return this.registerForm.get('email');
   }
 
   get password() {
-    return this.loginForm.get('password');
+    return this.registerForm.get('password');
   }
 
   getEmailError(): string {
@@ -70,39 +75,29 @@ export class LoginComponent implements OnInit {
     return '';
   }
 
+  getPolicyError(): string {
+    if (!this.registerForm.value.checkRegister) 
+      return 'Musisz zaakceptować regulamin.';
+    return '';
+  }
+
   onSubmit() {
     this.submitted = true;
-    this.loginForm.markAllAsTouched();
+    this.registerForm.markAllAsTouched();
     this.emailTt?.close();
     this.pwdTt?.close();
-    if (this.loginForm.invalid) {
+    if (this.registerForm.invalid) {
       if (this.email?.invalid) this.emailTt?.open();
       if (this.password?.invalid) this.pwdTt?.open();
       return;
     }
-    if (this.loginForm.valid) {
-      this.auth.login(this.loginForm.value)
+    if(!this.registerForm.value.checkRegister) {
+      this.chkTt?.open();
+      return;
+    }
+    if (this.registerForm.valid) {
+      this.auth.register(this.registerForm.value)
     }
   }
-
-  showAlert(message: string) {
-    this.alert.message = message;
-    this.alert.visible = true;
-    setTimeout(() => {
-      this.alert.visible = false;
-    }, 10000);
-  }
-
-  ngOnInit() {
-    this.route.queryParams.subscribe(params => {
-      const isLogout = params['registered'] === 'true';
-      if (isLogout) {
-        this.toastr.info('Użytkownik został zarejestrowany.\n Możesz się teraz zalogować!', 'Info', {
-          timeOut: 3000,
-          positionClass: 'toast-bottom-right',
-        });
-      }
-    });
-  }
-
+  
 }
