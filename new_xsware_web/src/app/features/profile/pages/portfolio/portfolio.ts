@@ -13,6 +13,6 @@ import { Projects } from '@features/profile/components/tabs/projects/projects';
   templateUrl: './portfolio.html',
   styleUrl: './portfolio.scss',
 })
-export class Portfolio {
+export class PortfolioComponent {
   active = 2;
 }

@@ -16,7 +16,7 @@ import { AuthService } from '@app/core/auth/auth.service';
   templateUrl: './login.html',
   styleUrl: './login.scss',
 })
-export class Login implements OnInit {
+export class LoginComponent implements OnInit {
   focus: any;
   focus1: any;
   submitted = false;

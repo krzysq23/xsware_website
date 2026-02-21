@@ -10,7 +10,7 @@ import { UserSessionService } from '@app/core/auth/userSession.service';
   templateUrl: './profile.html',
   styleUrl: './profile.scss',
 })
-export class Profile {
+export class ProfileComponent {
   userData = {} as any;
   active = 1;
 

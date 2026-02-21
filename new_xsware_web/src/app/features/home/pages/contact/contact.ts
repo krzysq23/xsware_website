@@ -14,7 +14,7 @@ import { SharedImports } from '@app/shared/imports';
   templateUrl: './contact.html',
   styleUrl: './contact.scss',
 })
-export class Contact {
+export class ContactComponent {
   focus: any;
   contactForm: FormGroup;
   isSubmitted = false;
