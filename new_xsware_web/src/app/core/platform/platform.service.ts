@@ -1,14 +1,16 @@
 import { Inject, Injectable, PLATFORM_ID } from '@angular/core';
-import { isPlatformBrowser } from '@angular/common';
+import { isPlatformBrowser, isPlatformServer } from '@angular/common';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class PlatformService {
-  private isBrowser: boolean;
+  readonly isBrowser: boolean;
+  readonly isServer: boolean;
 
-  constructor(@Inject(PLATFORM_ID) private platformId: Object) {
-    this.isBrowser = isPlatformBrowser(this.platformId);
+  constructor(@Inject(PLATFORM_ID) platformId: Object) {
+    this.isBrowser = isPlatformBrowser(platformId);
+    this.isServer = isPlatformServer(platformId);
   }
 
   getDocument(): Document | null {
@@ -17,9 +19,5 @@ export class PlatformService {
 
   getWindow(): Window | null {
     return this.isBrowser ? window : null;
-  }
-
-  isRunningInBrowser(): boolean {
-    return this.isBrowser;
   }
 }

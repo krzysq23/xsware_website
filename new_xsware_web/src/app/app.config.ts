@@ -2,20 +2,17 @@ import { ApplicationConfig, provideZoneChangeDetection } from '@angular/core';
 import { provideRouter } from '@angular/router';
 import { routes } from './app.routes';
 import { provideClientHydration, withEventReplay } from '@angular/platform-browser';
-import { provideAnimations } from '@angular/platform-browser/animations';
-import { provideHttpClient, withInterceptors } from '@angular/common/http';
-import { authUnterceptor } from '@app/core/auth/api.service';
 import { provideToastr } from 'ngx-toastr';
+import { provideXswareHttp } from '@app/core/http/http.config';
+import { provideAnimations } from '@angular/platform-browser/animations';
 
 export const appConfig: ApplicationConfig = {
   providers: [
-    provideZoneChangeDetection({ eventCoalescing: true }), 
-    provideRouter(routes), 
+    provideZoneChangeDetection({ eventCoalescing: true }),
+    provideRouter(routes),
+    ...provideXswareHttp(),
     provideClientHydration(withEventReplay()),
     provideAnimations(),
-    provideHttpClient(
-      withInterceptors([ authUnterceptor  ])
-    ),
-    provideToastr()
-  ]
+    provideToastr(),
+  ],
 };

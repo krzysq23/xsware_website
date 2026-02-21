@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { SharedImports } from '@app/shared/imports';
-import { UserSessionService } from '@app/core/auth/userSession.service';
 
 @Component({
   selector: 'app-profile',
@@ -11,10 +10,8 @@ import { UserSessionService } from '@app/core/auth/userSession.service';
   styleUrl: './profile.scss',
 })
 export class ProfileComponent {
+  
   userData = {} as any;
   active = 1;
 
-  constructor(private userSession: UserSessionService) {
-    this.userData = userSession.userData();
-  }
 }
