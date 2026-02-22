@@ -7,6 +7,7 @@ import { ToastrService } from 'ngx-toastr';
 import { HttpErrorResponse } from '@angular/common/http';
 import { finalize } from 'rxjs/operators';
 import { AuthFacade } from '@app/core/auth/auth.facade';
+import { error } from 'console';
 
 
 @Component({
@@ -116,10 +117,10 @@ export class RegisterComponent {
   }
 
   private mapAuthError(err: unknown, fallback: string): string {
-    if (!(err instanceof HttpErrorResponse)) return fallback;
-
-    if (err.status === 409) return 'Użytkownik z takim email już istnieje.';
-    if (err.status === 400) return 'Niepoprawne dane rejestracji.';
-    return fallback;
+    if (err instanceof HttpErrorResponse && err.error?.message != null) {
+      return err.error.message;
+    } else {
+      return fallback;
+    }
   }
 }

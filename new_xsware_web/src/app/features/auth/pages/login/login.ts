@@ -151,11 +151,10 @@ export class LoginComponent implements OnInit {
   }
 
   private mapAuthError(err: unknown, fallback: string): string {
-    if (!(err instanceof HttpErrorResponse)) return fallback;
-
-    if (err.status === 401) return 'Niepoprawny email lub hasło.';
-    if (err.status === 403) return 'Brak uprawnień.';
-    if (err.status === 429) return 'Za dużo prób. Spróbuj ponownie później.';
-    return fallback;
+    if (err instanceof HttpErrorResponse && err.error?.message != null) {
+      return err.error.message;
+    } else {
+      return fallback;
+    }
   }
 }

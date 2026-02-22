@@ -1,4 +1,4 @@
-import { Component, OnInit, Inject, inject, Renderer2, ElementRef, HostListener } from '@angular/core';
+import { Component, OnInit, Inject, inject, computed, Renderer2, ElementRef, HostListener } from '@angular/core';
 import { Router, NavigationEnd, RouterOutlet } from '@angular/router';
 import { Navbar } from '@core/layout/navbar/navbar';
 import { Footer } from '@core/layout/footer/footer';
@@ -11,6 +11,7 @@ import { DOCUMENT } from "@angular/common";
 import { filter, Subscription } from 'rxjs';
 import { take } from 'rxjs/operators';
 
+import { SessionStore } from '@app/core/auth/session.store';
 import { AuthFacade } from '@app/core/auth/auth.facade';
 
 @Component({
@@ -29,7 +30,10 @@ import { AuthFacade } from '@app/core/auth/auth.facade';
 export class AppComponent implements OnInit {
 
   private auth = inject(AuthFacade);
+  private session = inject(SessionStore);
   
+  isInitialized = computed(() => this.session.initialized());
+
   title = 'XSWare Solution';
   private routerSub?: Subscription;
   private lastScrollTop = 0;

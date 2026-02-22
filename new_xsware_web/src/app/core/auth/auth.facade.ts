@@ -3,6 +3,7 @@ import { catchError, map, of, tap } from 'rxjs';
 import { AuthApi } from '@app/features/auth/data-access/auth.api';
 import { SessionStore } from './session.store';
 import { LoginRequest, RegisterRequest } from '@app/features/auth/data-access/auth.models';
+import { finalize } from 'rxjs/operators';
 
 @Injectable({ providedIn: 'root' })
 export class AuthFacade {
@@ -11,10 +12,13 @@ export class AuthFacade {
   bootstrap() {
     return this.authApi.refresh().pipe(
       tap(res => this.session.setAccessToken(res.accessToken)),
-      catchError(() => of(null)),
+      catchError(err => {
+        this.session.clear();
+        return of(null);
+      }),
+      finalize(() => this.session.setInitialized(true)),
     );
   }
-
 
   login(req: LoginRequest) {
     return this.authApi.login(req).pipe(
