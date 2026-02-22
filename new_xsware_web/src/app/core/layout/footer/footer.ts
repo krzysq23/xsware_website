@@ -1,30 +1,24 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, computed, inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { SharedImports } from '@app/shared/imports';
-import { AuthService } from '@app/core/auth/auth.service';
+import { SessionStore } from '@app/core/auth/session.store';
 
 @Component({
-    selector: 'app-footer',
-    imports: [ 
-      SharedImports
-    ],
-    templateUrl: './footer.html',
-    styleUrls: ['./footer.scss']
+  selector: 'app-footer',
+  standalone: true,
+  imports: [SharedImports],
+  templateUrl: './footer.html',
+  styleUrls: ['./footer.scss'],
 })
-export class Footer implements OnInit {
-    test : Date = new Date();
-    public isLoggedIn = false;
+export class Footer {
+  test: Date = new Date();
 
-    constructor(private router: Router, private authService: AuthService) {
-      this.authService.isLoggedIn$.subscribe(status => {
-            this.isLoggedIn = status;
-        });
-    }
+  private router = inject(Router);
+  private session = inject(SessionStore);
 
-    ngOnInit() {
+  isLoggedIn = computed(() => this.session.isAuthenticated());
 
-    }
-    getPath(){
-      return this.router.url;
-    }
+  getPath() {
+    return this.router.url;
+  }
 }

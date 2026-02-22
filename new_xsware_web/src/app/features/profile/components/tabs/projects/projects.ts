@@ -9,7 +9,7 @@ import { SharedImports } from '@app/shared/imports';
   templateUrl: './projects.html',
   styleUrl: './projects.scss',
 })
-export class Projects {
+export class ProjectsComponent {
 
   carousel1 = [
     {

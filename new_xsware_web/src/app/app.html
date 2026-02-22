@@ -1,7 +1,14 @@
 <app-navbar></app-navbar>
 
 <main class="content">
-  <router-outlet></router-outlet>
+  @if (!isInitialized()) {
+    <div class="app-splash">
+      <div class="spinner"></div>
+      <p>Ładowanie...</p>
+    </div>
+  } @else {
+    <router-outlet />
+  }
 </main>
 
 <app-footer></app-footer>

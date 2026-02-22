@@ -1,15 +1,18 @@
-import { Component, OnInit, Inject, Renderer2, ElementRef, HostListener } from '@angular/core';
+import { Component, OnInit, Inject, inject, computed, Renderer2, ElementRef, HostListener } from '@angular/core';
 import { Router, NavigationEnd, RouterOutlet } from '@angular/router';
 import { Navbar } from '@core/layout/navbar/navbar';
 import { Footer } from '@core/layout/footer/footer';
-import { AuthService } from './core/auth/auth.service';
-import { PlatformService } from '@app/core/platform/platform';
+import { PlatformService } from '@app/core/platform/platform.service';
 
 import { RouterModule } from "@angular/router";
 import { CommonModule } from '@angular/common';
 import { Location } from "@angular/common";
 import { DOCUMENT } from "@angular/common";
 import { filter, Subscription } from 'rxjs';
+import { take } from 'rxjs/operators';
+
+import { SessionStore } from '@app/core/auth/session.store';
+import { AuthFacade } from '@app/core/auth/auth.facade';
 
 @Component({
   selector: 'app-root',
@@ -26,6 +29,11 @@ import { filter, Subscription } from 'rxjs';
 })
 export class AppComponent implements OnInit {
 
+  private auth = inject(AuthFacade);
+  private session = inject(SessionStore);
+  
+  isInitialized = computed(() => this.session.initialized());
+
   title = 'XSWare Solution';
   private routerSub?: Subscription;
   private lastScrollTop = 0;
@@ -33,7 +41,6 @@ export class AppComponent implements OnInit {
   private navbarHeight = 0;
 
   constructor(
-    private authService: AuthService,
     private renderer: Renderer2,
     private router: Router,
     public location: Location,
@@ -41,6 +48,9 @@ export class AppComponent implements OnInit {
     private platform: PlatformService,
     @Inject(DOCUMENT) private document: Document
   ) {
+    
+    this.auth.bootstrap().pipe(take(1)).subscribe();
+
     if (!this.platform.isBrowser) {
       console.log("Browser title: " + this.document.title);
     } else {
@@ -97,7 +107,5 @@ export class AppComponent implements OnInit {
     });
     this.hasScrolled();
 
-    /* Check authentication only in the browser */
-    this.authService.checkAuth();
   }
 }
