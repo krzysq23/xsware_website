@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { ApiClient } from '@app/core/http/api-client.service';
 import { Observable } from 'rxjs';
-import { UserInfo } from './user.models';
+import { UserInfo, UpdateUserInfoRequest } from './user.models';
 
 @Injectable({ providedIn: 'root' })
 export class UserApi {
@@ -22,5 +22,9 @@ export class UserApi {
     formData.append('file', file, file.name);
 
     return this.api.post<void>('/api/users/info/avatar', formData);
+  }
+
+  updateInfo(req: UpdateUserInfoRequest): Observable<void> {
+    return this.api.put<void>('/api/users/info', req);
   }
 }

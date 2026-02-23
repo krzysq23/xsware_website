@@ -1,7 +1,7 @@
 import { Injectable, signal, computed } from '@angular/core';
-import { catchError, finalize, of, tap, switchMap } from 'rxjs';
+import { catchError, finalize, of, tap, switchMap, throwError } from 'rxjs';
 import { UserApi } from './user.api';
-import { UserInfo } from './user.models';
+import { UserInfo, UpdateUserInfoRequest } from './user.models';
 
 @Injectable({ providedIn: 'root' })
 export class UserStore {
@@ -9,16 +9,27 @@ export class UserStore {
   private readonly _user = signal<UserInfo | null>(null);
   private readonly _avatarUrl = signal<string | null>(null);
   private readonly _uploadingAvatar = signal(false);
-  
+  private readonly _savingUserData = signal(false);
+
   user = this._user.asReadonly();
   avatarUrl = this._avatarUrl.asReadonly();
   uploadingAvatar = this._uploadingAvatar.asReadonly();
+  savingUserData = this._savingUserData.asReadonly();
+
+  private readonly roleMap: Record<string, string> = {
+    ROLE_CLIENT: 'Klient',
+    ROLE_ADMIN: 'Admin',
+  };
 
   email = computed(() => this._user()?.email ?? null);
-  role = computed(() => this._user()?.role ?? null);
   firstName = computed(() => this._user()?.firstName ?? null);
   lastName = computed(() => this._user()?.lastName ?? null);
   phone = computed(() => this._user()?.phone ?? null);
+  role = computed(() => {
+    const rawRole = this._user()?.role;
+    if (!rawRole) return 'Klient';
+    return this.roleMap[rawRole] ?? 'Klient';
+  });
 
   constructor(private userApi: UserApi) {}
 
@@ -77,6 +88,20 @@ export class UserStore {
   setUser(user: UserInfo | null) {
     this._user.set(user);
   }
+
+  updateUserInfo(req: UpdateUserInfoRequest) {
+    
+    this._savingUserData.set(true);
+
+    return this.userApi.updateInfo(req).pipe(
+      switchMap(() => this.loadUser()),
+      finalize(() => this._savingUserData.set(false)),
+      catchError((err) => {
+        return throwError(() => err);
+      }),
+    );
+  }
+
 
   clear() {
     this._user.set(null);

@@ -45,12 +45,8 @@
             </div>
           </div>
           <div class="text-center mt-5">
-            <h3>{{ firstName() }}
-              <!-- <span class="font-weight-light">, 27</span> -->
-            </h3>
-            <div class="h6 font-weight-300"><i class="ni location_pin mr-2"></i>{{ firstName() }} {{ lastName() }}</div>
-            <div class="h6 mt-4"><i class="ni business_briefcase-24 mr-2"></i><b> Email: </b>{{ email() }}</div>
-            <div><i class="ni education_hat mr-2"></i><b> Telefon: </b>{{ phone() }}</div>
+            <h3>{{ firstName() }} {{ lastName() }}</h3>
+            <span class="font-weight-light">{{ role() }}</span>
           </div>
           <div class="mt-5 py-5 border-top text-center">
             <div class="col-lg-12">
@@ -76,12 +72,18 @@
                     </a>
                     <ng-template ngbNavContent>
                       <div class="tab-content">
-                        <p class="description">
-                          Sprawdź i zaktualizuj swoje podstawowe informacje, takie jak imię, adres e-mail czy dane kontaktowe.
-                        </p>
-                        <p class="description">
-                          Aktualne dane ułatwiają komunikację i zapewniają sprawne korzystanie z aplikacji.
-                        </p>
+                        <div class="h6 mt-1">
+                          <b> Imię: </b>{{ firstName() }}
+                        </div>
+                        <div class="h6 mt-1">
+                          <b> Nazwisko: </b>{{ lastName() }}
+                        </div>
+                        <div class="h6 mt-1">
+                          <b> Email: </b>{{ email() }}
+                        </div>
+                        <div class="h6 mt-1">
+                          <b> Telefon: </b>{{ phone() }}
+                        </div>
                       </div>
                     </ng-template>
                   </li>

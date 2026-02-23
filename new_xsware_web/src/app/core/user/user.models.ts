@@ -7,3 +7,10 @@ export interface UserInfo {
   isAvatar: boolean;
   version: number;
 }
+
+export interface UpdateUserInfoRequest {
+  firstName: string;
+  lastName: string;
+  phone: string;
+  version: number;
+}

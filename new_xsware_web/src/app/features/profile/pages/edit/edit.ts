@@ -2,6 +2,7 @@ import { Component, inject, computed } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { SharedImports } from '@app/shared/imports';
+import { finalize } from 'rxjs/operators';
 import { UserStore } from '@app/core/user/user.store';
 import { ToastrService } from 'ngx-toastr';
 import { HttpErrorResponse } from '@angular/common/http';
@@ -21,6 +22,7 @@ export class EditComponent {
 
   private user = inject(UserStore);
   private userStore = inject(UserStore);
+  private fb = inject(FormBuilder);
   private toastr = inject(ToastrService);
 
   email = computed(() => this.user.email());
@@ -31,15 +33,27 @@ export class EditComponent {
 
   selectedAvatarFile: File | null = null;
   isAvatarUploading = false;
+  isSavingUserData = false;
 
-  avatarForm: FormGroup;
+  avatarForm = this.fb.group({
+    file: ['']
+  });
 
-  constructor(
-    private fb: FormBuilder,
-  ) {
-    this.avatarForm = this.fb.group({
-      file: ['']
-    });
+  userDataForm = this.fb.group({
+    firstName: ['', [Validators.maxLength(100)]],
+    lastName: ['', [Validators.maxLength(100)]],
+    phone: ['', [Validators.maxLength(20)]],
+  });
+
+  constructor() {
+    const user = this.userStore.user?.();
+    if (user) {
+      this.userDataForm.patchValue({
+        firstName: user.firstName ?? '',
+        lastName: user.lastName ?? '',
+        phone: user.phone ?? '',
+      });
+    }
   }
 
   onAvatarSelected(event: Event) {
@@ -90,7 +104,7 @@ export class EditComponent {
         if (input) input.value = '';
       },
       error: (err: unknown) => {
-        const msg = (err instanceof HttpErrorResponse && err.error?.message != null) ? err.error.message : 'Nie udało się zapisać avatara.';
+        const msg = this.mapError(err, 'Nie udało się zapisać avatara.');
         this.isAvatarUploading = false;
         this.toastr.error(msg, 'Błąd', {
           timeOut: 3000,
@@ -101,6 +115,55 @@ export class EditComponent {
         this.isAvatarUploading = false;
       },
     });
+  }
+
+  onUserDataFormSubmit() {
+
+    if (this.isSavingUserData) return;
+
+    this.userDataForm.markAllAsTouched();
+    if (this.userDataForm.invalid) return;
+
+    const currentUser = this.userStore.user();
+    if (!currentUser) {
+      this.toastr.error('Nie można zapisać – brak danych użytkownika.', 'Błąd');
+      return;
+    }
+
+    const req = {
+      firstName: this.userDataForm.value.firstName ?? '',
+      lastName: this.userDataForm.value.lastName ?? '',
+      phone: this.userDataForm.value.phone ?? '',
+      version: currentUser.version
+    };
+
+    this.isSavingUserData = true;
+
+    this.userStore.updateUserInfo(req)
+      .pipe(finalize(() => (this.isSavingUserData = false)))
+      .subscribe({
+        next: () => {
+          this.toastr.success('Dane zostały zapisane.', 'Sukces', {
+            timeOut: 2500,
+            positionClass: 'toast-bottom-right',
+          });
+        },
+        error: (err: unknown) => {
+          const msg = this.mapError(err, 'Nie udało się zapisać danych.');
+          this.toastr.error(msg, 'Błąd', {
+            timeOut: 3500,
+            positionClass: 'toast-bottom-right',
+          });
+        },
+      });
+  }
+
+  private mapError(err: unknown, fallback: string): string {
+    if (err instanceof HttpErrorResponse && err.error?.message != null) {
+      return err.error.message;
+    } else {
+      return fallback;
+    }
   }
 
 }
