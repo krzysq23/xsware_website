@@ -10,4 +10,17 @@ export class UserApi {
   getInfo(): Observable<UserInfo> {
     return this.api.get<UserInfo>('/api/users/info');
   }
+
+  getAvatar(): Observable<Blob> {
+    return this.api.getBlob('/api/users/info/avatar');
+  }
+
+  uploadAvatar(file: File): Observable<void> {
+
+    const formData = new FormData();
+    
+    formData.append('file', file, file.name);
+
+    return this.api.post<void>('/api/users/info/avatar', formData);
+  }
 }

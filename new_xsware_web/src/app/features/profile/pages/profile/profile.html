@@ -25,13 +25,17 @@
             <div class="col-lg-3 order-lg-2">
               <div class="card-profile-image">
                 <a href="javascript:void(0)">
-                  <img src="assets/img/other/profile_photo.png" class="rounded-circle" style="z-index: 10;">
+                  @if (avatarUrl()) {
+                    <img [src]="avatarUrl()" class="rounded-circle" style="z-index: 10;" />
+                  } @else {
+                    <img src="assets/img/other/profile_photo.png" class="rounded-circle" style="z-index: 10;">
+                  }
                 </a>
               </div>
             </div>
             <div class="col-lg-4 order-lg-3 text-lg-right align-self-lg-center">
               <div class="card-profile-actions py-4 mt-lg-0">
-                <a href="javascript:void(0)" class="btn btn-sm btn-info mr-4">Ustawienia</a>
+                <a routerLink="/profile/edit" class="btn btn-sm btn-info mr-4">Edycja</a>
                 <a href="javascript:void(0)" class="btn btn-sm btn-default float-right">Wiadomości</a>
               </div>
             </div>

@@ -1,0 +1,108 @@
+<main class="profile-page">
+  <section class="section-profile-cover section-shaped my-0">
+    <!-- Circles background -->
+    <div class="shape shape-style-1 shape-primary alpha-4">
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+    <!-- SVG separator -->
+    <div class="separator separator-bottom separator-skew">
+      <svg x="0" y="0" viewBox="0 0 2560 100" preserveAspectRatio="none" version="1.1" xmlns="http://www.w3.org/2000/svg">
+        <polygon class="fill-white" points="2560 0 2560 100 0 100"></polygon>
+      </svg>
+    </div>
+  </section>
+  <section class="section">
+    <div class="container">
+      <div class="card card-profile shadow mt--300">
+        <div class="px-4">
+          <div class="row justify-content-center">
+            <div class="col-lg-3 order-lg-2">
+              <div class="card-profile-image">
+                <a href="javascript:void(0)">
+                  @if (avatarUrl()) {
+                    <img [src]="avatarUrl()" class="rounded-circle" style="z-index: 10;" />
+                  } @else {
+                    <img src="assets/img/other/profile_photo.png" class="rounded-circle" style="z-index: 10;">
+                  }
+                </a>
+              </div>
+            </div>
+            <div class="col-lg-4 order-lg-3 text-lg-right align-self-lg-center">
+              <div class="card-body px-lg-2 py-lg-4 text-center">
+                <p class="mt-0 mb-2">Zmień zdjecie profilowe</p>
+                <form [formGroup]="avatarForm" (ngSubmit)="onAvatarSubmit()">
+                  <input
+                    type="file"
+                    id="avatarImg"
+                    class="btn-file"
+                    accept="image/*"
+                    (change)="onAvatarSelected($event)"
+                  />
+                  <div>
+                    <button
+                      type="submit"
+                      class="btn btn-default btn-round btn-block btn-sm mt-2"
+                      [disabled]="isAvatarUploading || !selectedAvatarFile"
+                    >
+                      Zapisz
+                    </button>
+                  </div>
+                </form>
+              </div>
+            </div>
+            <div class="col-lg-4 order-lg-1">
+              <div class="card-profile-stats d-flex text-lg-left">
+                <button routerLink="/profile" class="btn btn-icon btn-3 btn-primary" type="button">
+                  <span class="btn-inner--icon"><i class="ni ni-bold-left"></i></span>
+                  <span class="btn-inner--text">Powrót</span>
+                </button>
+              </div>
+            </div>
+          </div>
+          <div class="text-center">
+            <h3>
+              Edycja profilu
+            </h3>
+          </div>
+          <div class="mt-5 py-5 border-top text-center">
+            <div class="card-body p-lg-5">
+              <div class="form-group ">
+                <div class="input-group input-group-alternative">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="ni ni-single-02"></i></span>
+                  </div>
+                  <input class="form-control" placeholder="Imię" type="text">
+                </div>
+              </div>
+              <div class="form-group">
+                <div class="input-group input-group-alternative">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="ni ni-single-02"></i></span>
+                  </div>
+                  <input class="form-control" placeholder="Nazwisko" type="text">
+                </div>
+              </div>
+              <div class="form-group">
+                <div class="input-group input-group-alternative">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="ni ni-mobile-button"></i></span>
+                  </div>
+                  <input class="form-control" placeholder="Telefon" type="text">
+                </div>
+              </div>
+              <div>
+                <button type="button" class="btn btn-default btn-round btn-block btn-lg">Zapisz</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>

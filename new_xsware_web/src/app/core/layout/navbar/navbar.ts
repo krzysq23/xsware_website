@@ -8,7 +8,6 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { AuthFacade } from '@app/core/auth/auth.facade';
 import { SessionStore } from '@app/core/auth/session.store';
 import { UserStore } from '@app/core/user/user.store';
-
 @Component({
   selector: 'app-navbar',
   standalone: true,

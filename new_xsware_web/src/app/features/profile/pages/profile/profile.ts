@@ -19,5 +19,6 @@ export class ProfileComponent {
   firstName = computed(() => this.user.firstName());
   lastName = computed(() => this.user.lastName());
   phone = computed(() => this.user.phone());
+  avatarUrl = computed(() => this.user.avatarUrl());
 
 }

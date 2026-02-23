@@ -8,10 +8,12 @@ type Options = {
   params?: HttpParams | Record<string, string | number | boolean>;
   context?: HttpContext;
   withCredentials?: boolean;
+  responseType?: 'json' | 'blob';
 };
 
 @Injectable({ providedIn: 'root' })
 export class ApiClient {
+
   private readonly http = inject(HttpClient);
   private readonly baseUrl = inject(API_BASE_URL);
 
@@ -46,5 +48,15 @@ export class ApiClient {
       params: options.params as any,
       context: options.context,
     };
+  }
+
+  getBlob(path: string, options: Options = {}): Observable<Blob> {
+    return this.http.get(this.url(path), {
+      withCredentials: options.withCredentials ?? true,
+      headers: options.headers,
+      params: options.params as any,
+      context: options.context,
+      responseType: 'blob',
+    });
   }
 }
