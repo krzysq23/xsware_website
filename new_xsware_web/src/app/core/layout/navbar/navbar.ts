@@ -7,7 +7,7 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 import { AuthFacade } from '@app/core/auth/auth.facade';
 import { SessionStore } from '@app/core/auth/session.store';
-
+import { UserStore } from '@app/core/user/user.store';
 @Component({
   selector: 'app-navbar',
   standalone: true,
@@ -29,10 +29,10 @@ export class Navbar implements OnInit {
 
   private auth = inject(AuthFacade);
   private session = inject(SessionStore);
+  private user = inject(UserStore);
 
   isLoggedIn = computed(() => this.session.isAuthenticated());
-
-  email = computed(() => (this.isLoggedIn() ? 'Zalogowany użytkownik' : 'Gość'));
+  email = computed(() => this.user.email() ?? '—');
 
   ngOnInit() {
     if (!this.platform.isBrowser) return;

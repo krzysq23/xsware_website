@@ -158,3 +158,23 @@ $value in $brand-colors {
         @include button-variant($value, $value);
     }
 }
+
+// Custom buttons
+
+.btn-file {
+    max-width: -webkit-fill-available;
+    &::file-selector-button {
+        position: relative;
+        text-transform: uppercase;
+        transition: all 0.15s ease;
+        will-change: transform;
+        letter-spacing: 0.025em;
+        font-size: 0.875rem;
+        color: #fff;
+        background-color: #172b4d;
+        border-color: #172b4d;
+        box-shadow: 0 4px 6px rgba(50, 50, 93, 0.11), 0 1px 3px rgba(0, 0, 0, 0.08);
+        border-radius: 0.25rem;
+
+    }
+}

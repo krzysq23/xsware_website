@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, inject, computed } from '@angular/core';
 import { SharedImports } from '@app/shared/imports';
+import { UserStore } from '@app/core/user/user.store';
 
 @Component({
   selector: 'app-profile',
@@ -11,7 +12,14 @@ import { SharedImports } from '@app/shared/imports';
 })
 export class ProfileComponent {
   
-  userData = {} as any;
   active = 1;
+    
+  private user = inject(UserStore);
+  email = computed(() => this.user.email());
+  firstName = computed(() => this.user.firstName());
+  lastName = computed(() => this.user.lastName());
+  phone = computed(() => this.user.phone());
+  role = computed(() => this.user.role());
+  avatarUrl = computed(() => this.user.avatarUrl());
 
 }

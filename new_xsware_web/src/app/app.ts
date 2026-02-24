@@ -13,6 +13,7 @@ import { take } from 'rxjs/operators';
 
 import { SessionStore } from '@app/core/auth/session.store';
 import { AuthFacade } from '@app/core/auth/auth.facade';
+import { PUBLIC_PATHS } from '@app/core/auth/auth.public-paths';
 
 @Component({
   selector: 'app-root',
@@ -48,14 +49,27 @@ export class AppComponent implements OnInit {
     private platform: PlatformService,
     @Inject(DOCUMENT) private document: Document
   ) {
-    
-    this.auth.bootstrap().pipe(take(1)).subscribe();
 
     if (!this.platform.isBrowser) {
       console.log("Browser title: " + this.document.title);
     } else {
       console.log('SSR: No document object available');
     }
+
+    this.router.events
+      .pipe(
+        filter((e): e is NavigationEnd => e instanceof NavigationEnd),
+        take(1),
+      )
+      .subscribe((e) => {
+        const path = e.urlAfterRedirects.split('?')[0];
+        if (PUBLIC_PATHS.has(path)) {
+          this.session.setInitialized(true);
+        }
+      });
+  
+    this.auth.bootstrap().pipe(take(1)).subscribe();
+
   }
 
   @HostListener('window:scroll')
