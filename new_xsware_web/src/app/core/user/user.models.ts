@@ -14,3 +14,5 @@ export interface UpdateUserInfoRequest {
   phone: string;
   version: number;
 }
+
+export type BackendRole = 'ROLE_CLIENT' | 'ROLE_ADMIN';

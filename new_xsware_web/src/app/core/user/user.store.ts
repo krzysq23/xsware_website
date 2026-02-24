@@ -1,7 +1,7 @@
 import { Injectable, signal, computed } from '@angular/core';
 import { catchError, finalize, of, tap, switchMap, throwError } from 'rxjs';
 import { UserApi } from './user.api';
-import { UserInfo, UpdateUserInfoRequest } from './user.models';
+import { UserInfo, UpdateUserInfoRequest, BackendRole } from './user.models';
 
 @Injectable({ providedIn: 'root' })
 export class UserStore {
@@ -16,19 +16,18 @@ export class UserStore {
   uploadingAvatar = this._uploadingAvatar.asReadonly();
   savingUserData = this._savingUserData.asReadonly();
 
-  private readonly roleMap: Record<string, string> = {
+  private readonly roleMap: Record<BackendRole, string> = {
     ROLE_CLIENT: 'Klient',
     ROLE_ADMIN: 'Admin',
   };
 
   email = computed(() => this._user()?.email ?? null);
-  firstName = computed(() => this._user()?.firstName ?? null);
+  firstName = computed(() => this._user()?.firstName ?? "Użytkownik");
   lastName = computed(() => this._user()?.lastName ?? null);
   phone = computed(() => this._user()?.phone ?? null);
   role = computed(() => {
-    const rawRole = this._user()?.role;
-    if (!rawRole) return 'Klient';
-    return this.roleMap[rawRole] ?? 'Klient';
+    const rawRole = this._user()?.role as BackendRole | undefined;
+    return rawRole ? this.roleMap[rawRole] : 'Klient';
   });
 
   constructor(private userApi: UserApi) {}
