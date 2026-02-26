@@ -109,7 +109,7 @@ export class LoginComponent implements OnInit {
     ).subscribe({
       next: () => {
         this.toastr.success('Zalogowano.', 'Sukces', {
-          timeOut: 2500,
+          timeOut: 3500,
           positionClass: 'toast-bottom-right',
         });
 

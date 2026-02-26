@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { ApiClient } from '@app/core/http/api-client.service';
-import { AuthTokenResponse, LoginRequest, RegisterRequest } from './auth.models';
+import { AuthTokenResponse, LoginRequest, RegisterRequest, ChangePasswordRequest } from './auth.models';
 
 @Injectable({ providedIn: 'root' })
 export class AuthApi {
@@ -21,5 +21,9 @@ export class AuthApi {
 
   logout(): Observable<void> {
     return this.api.post<void>('/api/auth/logout', {});
+  }
+
+  changePassword(request: ChangePasswordRequest) {
+    return this.api.post<void>('/api/auth/change-password', request);
   }
 }

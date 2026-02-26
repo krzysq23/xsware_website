@@ -1,8 +1,5 @@
-export const PUBLIC_PATHS = new Set<string>([
-  '/',
-  '/home',
-  '/about',
-  '/contact',
-  '/auth/login',
-  '/auth/register',
-]);
+export const AUTH_PUBLIC_PATHS = [
+  '/api/auth/login',
+  '/api/auth/register',
+  '/api/auth/refresh'
+];

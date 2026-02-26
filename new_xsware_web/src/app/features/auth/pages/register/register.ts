@@ -104,14 +104,20 @@ export class RegisterComponent {
       finalize(() => (this.loading = false)),
     ).subscribe({
       next: () => {
-        this.toastr.success('Konto utworzone. Jesteś zalogowany.');
+        this.toastr.success('Konto utworzone. Jesteś zalogowany.', 'Sukces', {
+          timeOut: 3500,
+          positionClass: 'toast-bottom-right',
+        });
         const returnUrl = this.route.snapshot.queryParamMap.get('returnUrl') ?? '/profile';
         this.router.navigateByUrl(returnUrl);
       },
       error: (err: unknown) => {
         const msg = this.mapAuthError(err, 'Nie udało się zarejestrować.');
         this.alert = { visible: true, message: msg };
-        this.toastr.error(msg);
+        this.toastr.error(msg, 'Błąd', {
+          timeOut: 3500,
+          positionClass: 'toast-bottom-right',
+        });
       },
     });
   }
