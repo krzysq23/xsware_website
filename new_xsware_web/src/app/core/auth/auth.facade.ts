@@ -1,11 +1,12 @@
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 import { catchError, finalize, of, tap, map, switchMap } from 'rxjs';
 import { HttpErrorResponse } from '@angular/common/http';
 import { AuthApi } from '@app/features/auth/data-access/auth.api';
 import { SessionStore } from './session.store';
 import { UserApi } from '@app/core/user/user.api';
 import { UserStore } from '@app/core/user/user.store';
-import { LoginRequest, RegisterRequest } from '@app/features/auth/data-access/auth.models';
+import { LoginRequest, RegisterRequest, ChangePasswordRequest } from '@app/features/auth/data-access/auth.models';
 
 @Injectable({ providedIn: 'root' })
 export class AuthFacade {
@@ -13,9 +14,9 @@ export class AuthFacade {
   private bootstrapInFlight = false;
 
   constructor(
+    private router: Router,
     private authApi: AuthApi, 
     private session: SessionStore,
-    private userApi: UserApi,
     private userStore: UserStore
   ) {}
 
@@ -69,6 +70,21 @@ export class AuthFacade {
         this.session.clear();
         return of(void 0);
       }),
+    );
+  }
+
+  changePasswordAndLogout(currentPassword: string, newPassword: string) {
+    return this.authApi.changePassword({ currentPassword, newPassword }).pipe(
+      switchMap(() => {
+        if (this.authApi?.logout) return this.authApi.logout();
+        return of(void 0);
+      }),
+      tap(() => {
+        this.session.clear();
+      }),
+      tap(() => {
+        this.router.navigateByUrl('/auth/login');
+      })
     );
   }
 

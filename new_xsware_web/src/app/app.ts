@@ -13,7 +13,7 @@ import { take } from 'rxjs/operators';
 
 import { SessionStore } from '@app/core/auth/session.store';
 import { AuthFacade } from '@app/core/auth/auth.facade';
-import { PUBLIC_PATHS } from '@app/core/auth/auth.public-paths';
+import { PUBLIC_PATHS } from '@app/core/config/route.public-paths';
 
 @Component({
   selector: 'app-root',

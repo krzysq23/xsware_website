@@ -9,6 +9,11 @@ export type RegisterRequest = {
   name?: string 
 };
 
+export interface ChangePasswordRequest {
+  currentPassword: string;
+  newPassword: string;
+}
+
 export type AuthTokenResponse = { 
   accessToken: string 
 };
